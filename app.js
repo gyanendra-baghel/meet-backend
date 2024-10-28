@@ -19,6 +19,13 @@ const corsOptions = {
 // Apply CORS middleware to Express
 app.use(cors(corsOptions));
 
+app.use((req, res, next) => {
+  // res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
 // Create the Socket.io server and apply CORS options
 const io = new Server(server, {
   cors: {
